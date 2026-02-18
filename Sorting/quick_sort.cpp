@@ -36,9 +36,9 @@ int getPivotIndex(int *arr, int start, int end)
     int j = end;
     while (i < j)
     {
-        while (i <= end && arr[i] <= pivotElement)
+        while (i < j && arr[i] <= pivotElement)
             i++;
-        while (j >= start && arr[j] > pivotElement)
+        while (j > i && arr[j] > pivotElement)
             j--;
         if (i < j)
         {

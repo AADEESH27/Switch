@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 
+// Stable sorting algorithm
 auto mergerSort(int *arr, int start, int end) -> void;
 auto mergeSorted(int *arr, int start, int mid, int end) -> void;
 

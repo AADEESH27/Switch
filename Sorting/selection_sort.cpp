@@ -1,16 +1,19 @@
 #include <iostream>
 #include <algorithm>
 
-auto selectionSort(int *arr, int size) -> void;
+// Not stable: relative order is not maintained
+
+void selectionSort(int *arr, int size);
 
 int main()
 {
     int arr[5] = {5, 4, 3, 2, 1};
     selectionSort(arr, 5);
-    for (int i : arr)
+    for (int num : arr)
     {
-        std::cout << i << "\n";
+        std::cout << num << " ";
     }
+    std::cout << "\n";
     return 0;
 }
 
@@ -21,7 +24,7 @@ void selectionSort(int *arr, int size)
         int min_idx = i;
         for (int j = i + 1; j < size; j++)
         {
-            if (arr[j] < arr[i])
+            if (arr[j] < arr[min_idx])
             {
                 min_idx = j;
             }
