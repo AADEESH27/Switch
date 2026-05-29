@@ -1,8 +1,7 @@
 #include <iostream>
-#include <algorithm>
+#include "../Utils/array_utils.h"
 
 auto quickSort(int *arr, int start, int end) -> void;
-auto getPivotIndex(int *arr, int start, int end) -> int;
 
 int main()
 {
@@ -23,28 +22,8 @@ void quickSort(int *arr, int start, int end)
     {
         return;
     }
-    int pivotIndex = getPivotIndex(arr, start, end);
+    int pivotIndex = getPartitionIndex(arr, start, end);
     quickSort(arr, start, pivotIndex - 1);
     quickSort(arr, pivotIndex + 1, end);
     return;
-}
-
-int getPivotIndex(int *arr, int start, int end)
-{
-    int pivotElement = arr[start];
-    int i = start;
-    int j = end;
-    while (i < j)
-    {
-        while (i < j && arr[i] <= pivotElement)
-            i++;
-        while (j > i && arr[j] > pivotElement)
-            j--;
-        if (i < j)
-        {
-            std::swap(arr[i], arr[j]);
-        }
-    }
-    std::swap(arr[start], arr[j]);
-    return j;
 }

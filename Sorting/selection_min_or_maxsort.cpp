@@ -1,7 +1,8 @@
 #include <iostream>
-#include <algorithm>
+#include "../Utils/array_utils.h"
 
 // Not stable: relative order is not maintained
+// Select min element and place at correct place
 
 void selectionSort(int *arr, int size);
 
@@ -29,7 +30,7 @@ void selectionSort(int *arr, int size)
                 min_idx = j;
             }
         }
-        std::swap(arr[i], arr[min_idx]);
+        swap(arr, arr[i], arr[min_idx]);
     }
     return;
 }
