@@ -1,26 +1,36 @@
 #include <iostream>
 #include <climits>
+#include <vector>
 
 int main()
 {
-    int arr[5] = {4, 5, 2, 6, 1};
+    int size;
+    std::cin >> size;
+    std::vector<int> input(size);
+    for (int i = 0; i < size; i++)
+    {
+        int num;
+        std::cin >> num;
+        input[i] = num;
+    }
     int max_ele = INT_MIN;
     int second_max_ele = INT_MIN;
-    for (int x : arr)
+    for (int i = 0; i < input.size(); i++)
     {
-        if (x > max_ele)
+        if (input[i] > max_ele)
         {
             second_max_ele = max_ele;
-            max_ele = x;
+            max_ele = input[i];
         }
         else
         {
-            if (x > second_max_ele && x < max_ele)
+            if (input[i] != max_ele && input[i] > second_max_ele)
             {
-                second_max_ele = x;
+                second_max_ele = input[i];
             }
         }
     }
-    std::cout << (second_max_ele == INT_MIN ? -1 : second_max_ele);
+    std::cout << "Max ele: " << max_ele << "\n";
+    std::cout << "Second max ele: " << second_max_ele << "\n";
     return 0;
 }

@@ -1,26 +1,38 @@
 #include <iostream>
+#include <vector>
 #include <algorithm>
 
 int main()
 {
-    int arr[5] = {0, 1, 4, 0, 5};
-    int i = 0;
-    while (i < 5 && arr[i] != 0)
-        i++;
-    int j = i + 1;
-    while (i < 5 && j < 5)
+    int size;
+    std::cin >> size;
+    std::vector<int> input(size);
+    for (int i = 0; i < size; i++)
     {
-        if (arr[i] == 0 && arr[j] != 0)
+        std::cin >> input[i];
+    }
+    int zero = 0;
+    while (input[zero] != 0)
+        zero++;
+    int non_zero = zero + 1;
+    while (non_zero < input.size())
+    {
+        if (input[non_zero] != 0)
         {
-            std::swap(arr[i], arr[j]);
-            i++;
+            std::swap(input[zero], input[non_zero]);
+            while (input[zero] != 0)
+                zero++;
+            non_zero++;
         }
-        j++;
+        else
+        {
+            non_zero++;
+        }
     }
-    for (int x : arr)
+    for (int i = 0; i < input.size(); i++)
     {
-        std::cout << x << " ";
+        std::cout << input[i] << " ";
     }
-    std::cout << "\n";
+    std::cout << std::endl;
     return 0;
 }

@@ -43,27 +43,3 @@ void merge(int *arr, int start, int mid, int end)
     }
     return;
 }
-
-int getPartitionIndex(int *arr, int start, int end)
-{
-    int pivot = arr[start];
-    int i = start;
-    int j = end;
-    while (i < j)
-    {
-        while (i <= end && arr[i] <= pivot)
-        {
-            i++;
-        }
-        while (j >= start && arr[j] > pivot)
-        {
-            j--;
-        }
-        if (i < j)
-        {
-            swap(arr, i, j);
-        }
-    }
-    swap(arr, start, j);
-    return j;
-}
