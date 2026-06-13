@@ -24,14 +24,9 @@ int main()
         }
         else
         {
-            max_cons_ones = std::max(max_cons_ones, curr_ones);
             curr_ones = 0;
         }
-    }
-    if (curr_ones > max_cons_ones)
-    {
-        max_cons_ones = curr_ones;
-        curr_ones = 0;
+        max_cons_ones = std::max(max_cons_ones, curr_ones);
     }
     std::cout << "Max consecutinve ones: " << max_cons_ones << "\n";
     return 0;
