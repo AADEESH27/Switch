@@ -60,7 +60,7 @@ std::vector<std::vector<int>> threeSum(std::vector<int> &input, const int &targe
     // return result;
 
     sort(input.begin(), input.end());
-    for (int i = 0; i < input.size() - 2; i++)
+    for (int i = 0; i < input.size(); i++)
     {
         if (i != 0 && input[i] == input[i - 1])
         {
@@ -70,24 +70,28 @@ std::vector<std::vector<int>> threeSum(std::vector<int> &input, const int &targe
         int k = input.size() - 1;
         while (j < k)
         {
-            int three_sum = input[i] + input[j] + input[k];
-            if (three_sum == target)
+            int sum = input[i] + input[j] + input[k];
+            if (sum == 0)
             {
                 result.push_back({input[i], input[j], input[k]});
                 j++;
-                k--;
                 while (j < input.size() && input[j] == input[j - 1])
+                {
                     j++;
+                }
+                k--;
                 while (k >= 0 && input[k] == input[k + 1])
+                {
                     k--;
+                }
             }
-            else if (three_sum < target)
+            else if (sum > 0)
             {
-                j++;
+                k--;
             }
             else
             {
-                k--;
+                j++;
             }
         }
     }

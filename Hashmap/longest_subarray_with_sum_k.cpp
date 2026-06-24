@@ -1,36 +1,64 @@
 #include <iostream>
 #include <vector>
 #include <unordered_map>
+#include <climits>
 #include <algorithm>
 
-int calculateLengthOfLongestSubarrayWithSumK(const std::vector<int> &input, int k);
+int longestLengthOfSubarrayWithSumK(const std::vector<int> &input, int &k);
+int countOfSubarrayWithSumK(const std::vector<int> &input, int &k);
+
 int main()
 {
-    std::vector<int> input = {10, 5, 2, 7, 1, 9};
-    int k = 15;
-    std::cout << calculateLengthOfLongestSubarrayWithSumK(input, k);
+    int size;
+    std::cin >> size;
+    std::vector<int> input(size);
+    for (int i = 0; i < size; i++)
+    {
+        std::cin >> input[i];
+    }
+    int k;
+    std::cin >> k;
+    std::cout << longestLengthOfSubarrayWithSumK(input, k);
     return 0;
 }
 
-int calculateLengthOfLongestSubarrayWithSumK(const std::vector<int> &input, int k)
+int longestLengthOfSubarrayWithSumK(const std::vector<int> &input, int &k)
 {
-    int max_length = 0;
-    std::unordered_map<int, int> prefixSumComplimentKMap;
-    int pre_sum = 0;
-    prefixSumComplimentKMap[0] = -1;
+    std::unordered_map<int, int> map;
+    map[0] = -1;
+    int max_length = INT_MIN;
+    int prefix_sum = 0;
     for (int i = 0; i < input.size(); i++)
     {
-        pre_sum += input[i];
-        int question_from_map = pre_sum - k;
-        if (prefixSumComplimentKMap.find(question_from_map) != prefixSumComplimentKMap.end())
+        prefix_sum += input[i];
+        auto it = map.find(prefix_sum - k);
+        if (it != map.end())
         {
-            int length = i - prefixSumComplimentKMap[question_from_map];
-            max_length = std::max(max_length, length);
+            max_length = std::max(max_length, (i - it->second));
         }
-        if (prefixSumComplimentKMap.find(pre_sum) == prefixSumComplimentKMap.end())
+        if (map.find(prefix_sum) == map.end())
         {
-            prefixSumComplimentKMap[pre_sum] = i;
+            map[prefix_sum] = i;
         }
     }
-    return max_length;
+    return max_length == INT_MIN ? 0 : max_length;
+}
+
+int countOfSubarrayWithSumK(const std::vector<int> &input, int &k)
+{
+    std::unordered_map<int, int> map;
+    map[0]++;
+    int count = 0;
+    int prefix_sum = 0;
+    for (int i = 0; i < input.size(); i++)
+    {
+        prefix_sum += input[i];
+        auto it = map.find(prefix_sum - k);
+        if (it != map.end())
+        {
+            count += it->second;
+        }
+        map[prefix_sum]++;
+    }
+    return count;
 }
