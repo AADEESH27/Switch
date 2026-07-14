@@ -25,9 +25,9 @@ int main()
 int longestLengthOfSubarrayWithSumK(const std::vector<int> &input, int &k)
 {
     std::unordered_map<int, int> map;
-    map[0] = -1;
     int max_length = INT_MIN;
     int prefix_sum = 0;
+    map[prefix_sum] = -1;
     for (int i = 0; i < input.size(); i++)
     {
         prefix_sum += input[i];
@@ -47,9 +47,9 @@ int longestLengthOfSubarrayWithSumK(const std::vector<int> &input, int &k)
 int countOfSubarrayWithSumK(const std::vector<int> &input, int &k)
 {
     std::unordered_map<int, int> map;
-    map[0]++;
     int count = 0;
     int prefix_sum = 0;
+    map[prefix_sum]++;
     for (int i = 0; i < input.size(); i++)
     {
         prefix_sum += input[i];

@@ -2,35 +2,43 @@
 #include <vector>
 #include <unordered_map>
 
-int countSubarraySumDivisibleByK(const std::vector<int> &input, int k);
+int countSubarraysWithSumDivisibleByk(const std::vector<int> &input, int &k);
 
 int main()
 {
-    std::vector<int> input = {3, 1, 4, 1};
-    int k = 3;
-    std::cout << countSubarraySumDivisibleByK(input, k);
+    int size;
+    std::cin >> size;
+    std::vector<int> input(size);
+    for (int i = 0; i < size; i++)
+    {
+        std::cin >> input[i];
+    }
+    int k;
+    std::cin >> k;
+    std::cout << countSubarraysWithSumDivisibleByk(input, k) << "\n";
     return 0;
 }
 
-int countSubarraySumDivisibleByK(const std::vector<int> &input, int k)
+int countSubarraysWithSumDivisibleByk(const std::vector<int> &input, int &k)
 {
-    std::unordered_map<int, int> remainderFromKMap;
-    remainderFromKMap[0] = 1;
-    int count = 0;
+    std::unordered_map<int, int> mp;
     int pre_sum = 0;
+    mp[pre_sum]++;
+    int count = 0;
     for (int i = 0; i < input.size(); i++)
     {
         pre_sum += input[i];
-        int question_from_map = pre_sum % k;
-        if (question_from_map < 0)
+        int target = pre_sum % k;
+        if (target < 0)
         {
-            question_from_map += k;
+            target += k;
         }
-        if (remainderFromKMap.find(question_from_map) != remainderFromKMap.end())
+        auto it = mp.find(target);
+        if (it != mp.end())
         {
-            count += remainderFromKMap[question_from_map];
+            count += it->second;
         }
-        remainderFromKMap[question_from_map]++;
+        mp[target]++;
     }
     return count;
 }
