@@ -63,14 +63,6 @@ int maxPointsOnALine(const std::vector<std::vector<int>> &input)
                 dy = -dy;
                 dx = -dx;
             }
-            if (dx == 0)
-            {
-                dy = 1;
-            }
-            if (dy == 0)
-            {
-                dx = 1;
-            }
             int gcd = getGCD(std::min(abs(dy), abs(dx)), std::max(abs(dy), abs(dx)));
             dy = dy / gcd;
             dx = dx / gcd;
