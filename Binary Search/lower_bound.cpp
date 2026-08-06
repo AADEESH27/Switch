@@ -24,13 +24,13 @@ int lowerBound(const std::vector<int> &input, const int &target)
     while (left_pointer <= right_pointer)
     {
         int mid_pointer = left_pointer + (right_pointer - left_pointer) / 2;
-        if (input[mid_pointer] >= target)
+        if (input[mid_pointer] < target)
         {
-            right_pointer = mid_pointer - 1;
+            left_pointer = mid_pointer + 1;
         }
         else
         {
-            left_pointer = mid_pointer + 1;
+            right_pointer = mid_pointer - 1;
         }
     }
     return left_pointer == input.size() ? -1 : left_pointer;

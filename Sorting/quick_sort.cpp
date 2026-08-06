@@ -32,23 +32,23 @@ void quickSort(int *arr, int start, int end)
 int getPivotIndex(int *arr, int start, int end)
 {
     int pivot = arr[start];
-    int i = start;
-    int j = end;
-    while (i < j)
+    int left = start + 1;
+    int right = end;
+    while (left < right)
     {
-        while (i <= end && arr[i] <= pivot)
+        while (left <= end && arr[left] <= pivot)
         {
-            i++;
+            left++;
         }
-        while (j >= start && arr[j] > pivot)
+        while (right >= start + 1 && arr[right] > pivot)
         {
-            j--;
+            right--;
         }
-        if (i < j)
+        if (left < right)
         {
-            swap(arr, i, j);
+            swap(arr, left, right);
         }
     }
-    swap(arr, start, j);
-    return j;
+    swap(arr, start, right);
+    return right;
 }
