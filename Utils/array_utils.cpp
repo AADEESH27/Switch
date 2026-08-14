@@ -12,6 +12,7 @@ void swap(int *arr, int ind1, int ind2)
 void merge(int *arr, int start, int mid, int end)
 {
     std::vector<int> temp;
+    temp.reserve(end - start + 1);
     int i = start;
     int j = mid + 1;
     while (i <= mid && j <= end)
